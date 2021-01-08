@@ -46,4 +46,4 @@ async def ping(ctx):
     await ctx.send("Pong!")
 
 
-client.run('NzkyMTExNDMxNzA4NzA0NzY4.X-Y9Qg.Ph43jt1nsVE3BjuZ4Ad0xh6n-v8')
+client.run('')

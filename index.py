@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 import os
+from webserver import keep_alive
+import time
 
 
 client = commands.Bot(
@@ -34,6 +36,14 @@ for filename in os.listdir('./cogs'):
 
 
 @client.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandOnCooldown):
+        coold = str(time.strftime('%H:%M:%S', time.gmtime(error.retry_after)))
+        await ctx.send(f"**{ctx.author}** Cooldown: {coold}")
+        return
+
+
+@client.event
 async def on_ready():
     print('Logged in as {0} ({0.id})'.format(client.user))
 
@@ -48,6 +58,7 @@ async def ping(ctx):
     )
     
     await ctx.send(embed=e)
+    
 
-
+keep_alive()
 client.run('')

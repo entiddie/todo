@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 from pymongo import MongoClient
 
-uri = ""
+uri = "mongodb+srv://riju:1234@cluster0.2iy0s.mongodb.net/todo?retryWrites=true&w=majority"
 
 cluster = MongoClient(uri)
 db = cluster["todo"]
@@ -60,6 +60,7 @@ class ToDo(commands.Cog):
 
     
     @commands.command(aliases=['task', 'new'])
+    @commands.cooldown(1, 3, commands.BucketType.user)
     async def add(self, ctx, *, task: str=None):
 
         if not task:
@@ -85,6 +86,7 @@ class ToDo(commands.Cog):
 
 
     @commands.command(aliases=['done', 'delete'])
+    @commands.cooldown(1, 2, commands.BucketType.user)
     async def remove(self, ctx, index=None):
 
         if not index:
@@ -136,6 +138,7 @@ class ToDo(commands.Cog):
 
 
     @commands.command(aliases=['all'])
+    @commands.cooldown(1, 3, commands.BucketType.user)
     async def list(self, ctx):
 
         user = ctx.author.id

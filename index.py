@@ -43,7 +43,11 @@ async def on_ready():
 
 @client.command()
 async def ping(ctx):
-    await ctx.send("Pong!")
+    e = discord.Embed(
+        color=0x2f3136, description='<:check:779967322118946846> Bot servers online'
+    )
+    
+    await ctx.send(embed=e)
 
 
 client.run('')

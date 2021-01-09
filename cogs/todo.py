@@ -3,7 +3,7 @@ from discord.ext import commands
 import json
 from pymongo import MongoClient
 
-uri = "mongodb+srv://riju:1234@cluster0.2iy0s.mongodb.net/todo?retryWrites=true&w=majority"
+uri = ""
 
 cluster = MongoClient(uri)
 db = cluster["todo"]
